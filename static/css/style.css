@@ -1,0 +1,154 @@
+body {
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 50px;
+    margin: 0;
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #cccccc;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+a {
+    color: #90caf9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #3e3c3c;
+    margin: 40px 0;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.project {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(171, 171, 171, 0.477);
+}
+
+.project h3 {
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.project p {
+    margin-bottom: 10px;
+    color: #cccccc;
+}
+
+.about {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    text-align: left;
+    line-height: 1.6;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(171, 171, 171, 0.477);
+}
+
+p {
+    text-indent: 2em;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.skill-group {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(171, 171, 171, 0.477);
+    text-align: left;
+}
+
+.skill-group h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.skill-group ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.skill-group li {
+    color: #cccccc;
+    line-height: 1.6;
+}
+.typewriter::after {
+    content: "Hello, I'm Tanner Poulton";
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    border-right: 2px solid #90caf9;
+    animation:
+        typing 3s steps(30) forwards,
+        fade-cursor 1.5s ease-out 3s forwards;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes fade-cursor {
+    0%   { border-right-color: #90caf9; }
+    25%  { border-right-color: rgba(144, 202, 249, 0.6); }
+    50%  { border-right-color: rgba(144, 202, 249, 0.4); }
+    75%  { border-right-color: rgba(144, 202, 249, 0.2); }
+    100% { border-right-color: transparent; }
+}
+
+#pi-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+}
+
+#pi-background canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+
+
+

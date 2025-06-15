@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tanner Poulton - Resume</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="pi-background">
+        <canvas id="pi-canvas"></canvas>
+    </div>
+    <h1><span class="typewriter"></span></h1>
+    <p><a href="mailto:Tpoulton36@gmail.com" class="email">Tpoulton36@gmail.com</a></p>
+    <p>Senior Computer Science Student</p>
+    <p>Welcome to my resume-style website built with Flask.</p>
+    <hr>
+
+<hr>
+<h2>About Me</h2>
+<div class="about">
+    <p>Hey there! I'm Tanner Poulton, a senior Computer Science student with a strong foundation in software development and hands-on experience in languages like Python, Java, and C++. I enjoy building practical, functional applications that solve real problems — whether it's a resume website using Flask, a contact manager in Java, or a C++ project that processes and sorts data from CSV files.</p>
+
+    <p>I've worked across a variety of tools including Eclipse, VS Code, and Git Bash, and I’m comfortable with frameworks like Flask and testing libraries like JUnit. I’ve also dove into secure coding, SDLC principles, and version control. I approach development with a focus on clarity, precision, and maintainability, and I’m always learning.</p>
+
+    <p>Whether it’s web development, system logic, or backend design, I enjoy working at the intersection of problem-solving and real-world application. This site is just one way I’m showcasing what I can do — thanks for checking it out.</p>
+</div>
+
+<!-- Projects-->
+
+<h2>Projects</h2>
+<div class="projects">
+    <div class="project">
+        <h3>VectorSorting (C++)</h3>
+        <p>A program that sorts bid data using selection sort and quicksort algorithms. Reads from CSV and allows menu-based interaction.</p>
+        <a href="https://github.com/yourusername/vectorsorting" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project">
+        <h3>Contact Service (Java)</h3>
+        <p>A small Java app with unit tests that manages contact information for a mobile app project. Built using Eclipse and JUnit.</p>
+        <a href="https://github.com/yourusername/contact-service" target="_blank">View on GitHub</a>
+    </div>
+    <!-- Add more projects as you go -->
+</div>
+
+<hr>
+<h2>Skills</h2>
+<div class="skills">
+    <div class="skill-group">
+        <h3>Languages</h3>
+        <ul>
+            <li>Python</li>
+            <li>Java</li>
+            <li>C++</li>
+            <li>SQL</li>
+        </ul>
+    </div>
+    <div class="skill-group">
+        <h3>Frameworks & Tools</h3>
+        <ul>
+            <li>Flask</li>
+            <li>JUnit</li>
+            <li>Git & GitHub</li>
+            <li>Visual Studio Code</li>
+            <li>Eclipse</li>
+        </ul>
+    </div>
+    <div class="skill-group">
+        <h3>Concepts</h3>
+        <ul>
+            <li>Object-Oriented Programming</li>
+            <li>Software Testing</li>
+            <li>Secure Coding Practices</li>
+            <li>SDLC & Agile</li>
+        </ul>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
