@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Algorithms Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/algorithms.css') }}">
+</head>
+<body>
+
+  <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+
+  <h1>Algorithms Lab</h1>
+  <p>Visual learning space for searching and sorting algorithms.</p>
+  <hr>
+
+  <h2>Bubble Sort (Basic)</h2>
+  <div id="bubble-basic-mount" class="viz-mount">Placeholder</div>
+
+  <hr>
+
+  <h2>Bubble Sort (Optimized)</h2>
+  <div id="bubble-optimized-mount" class="viz-mount">Placeholder</div>
+
+  <script src="{{ url_for('static', filename='js/algorithms.js') }}"></script>
+</body>
+</html>
