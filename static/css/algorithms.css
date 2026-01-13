@@ -91,4 +91,254 @@ canvas {
   display: block;
 }
 
+/* ===== Algorithms page polish (matches home page vibe) ===== */
 
+/* Override global body centering and padding, but only inside this page */
+.algo-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: left;
+}
+
+/* Header spacing */
+.algo-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.algo-header h1 {
+  margin: 0 0 8px 0;
+}
+
+.algo-header p {
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Controls row as a card */
+.algo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: center;
+  justify-content: center;
+
+  margin: 16px auto 0 auto;
+  padding: 14px 16px;
+
+  background: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(171, 171, 171, 0.24);
+  max-width: 1100px;
+}
+
+/* Buttons match the site vibe */
+.algo-controls button {
+  background: #1a1a1a;
+  color: #f0f0f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.algo-controls button:hover {
+  border-color: rgba(144, 202, 249, 0.55);
+}
+
+.algo-controls button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Sliders */
+.algo-controls label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.9;
+}
+
+.algo-controls input[type="range"] {
+  width: 180px;
+}
+
+/* Dataset meta tight to controls, and push compare row down */
+.dataset-meta {
+  margin-top: 10px;     /* tight to controls */
+  margin-bottom: 0;     /* no extra gap here */
+  text-align: center;
+  opacity: 0.85;
+}
+
+.compare-row {
+  margin-top: 48px;     /* this is where the separation happens */
+}
+
+/* Panels as cards (match home) */
+.algo-panel {
+  background: #1e1e1e;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 0 15px rgba(171, 171, 171, 0.24);
+}
+
+.algo-panel h2 {
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+/* Canvas frame */
+.viz-wrap {
+  background: #121212;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Stats block */
+.stats {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  opacity: 0.9;
+}
+
+.stats span {
+  font-weight: 600;
+}
+
+/* Center comparison strip styling */
+.compare-strip {
+  margin-top: 0;
+}
+
+.compare-box {
+  width: 100%;
+  background: #1e1e1e;
+  border-radius: 10px;
+  padding: 14px 12px;
+  box-shadow: 0 0 15px rgba(171, 171, 171, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.compare-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.compare-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 1100px) {
+  .compare-row {
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .compare-strip {
+    max-width: none;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .compare-box {
+    max-width: 260px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hex background layer for Algorithms page only */
+#hex-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: transparent;
+}
+
+#hex-background canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ===== Algorithms page typography ===== */
+
+/* Main page title */
+.algo-header h1 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+/* Algorithm panel titles */
+.algo-panel h2 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+/* Stat labels and comparison labels */
+.stats div,
+.compare-label {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Keep stat values readable */
+.stats span,
+.compare-value {
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+/* ===== Title styling (accent + glow) ===== */
+.algo-header h1 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;           /* increase size */
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  color: #90caf9;
+
+  text-shadow:
+    0 0 10px rgba(144, 202, 249, 0.35),
+    0 0 22px rgba(144, 202, 249, 0.18);
+}
+
+/* Accent color for live comparison values */
+#statFasterPct,
+#statWinner,
+#statStatus {
+  color: #90caf9;
+  text-shadow: 0 0 10px rgba(144, 202, 249, 0.18);
+}
+
+.algo-panel {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.algo-panel:hover {
+  border-color: rgba(144, 202, 249, 0.35);
+  box-shadow: 0 0 18px rgba(144, 202, 249, 0.10);
+}
+
+.compare-value {
+  color: #90caf9;
+  text-shadow: 0 0 10px rgba(144, 202, 249, 0.18);
+}

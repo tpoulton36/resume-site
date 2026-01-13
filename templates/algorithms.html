@@ -3,10 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Algorithms Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/algorithms.css') }}">
 </head>
 <body>
+
+  <div id="hex-background" aria-hidden="true">
+  <canvas id="hexCanvas"></canvas>
+  </div>
+
 
   <main class="algo-page">
   <header class="algo-header">
@@ -87,5 +96,7 @@
 
 
   <script src="{{ url_for('static', filename='js/algorithms.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/hex_background.js') }}"></script>
+
 </body>
 </html>

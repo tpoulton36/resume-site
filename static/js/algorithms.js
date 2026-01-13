@@ -212,14 +212,15 @@ function setControlsEnabled(mode) {
       const isA = i === highlight.a;
       const isB = i === highlight.b;
 
-      // default bar
+      // default bar (neutral)
       let fill = "rgba(255,255,255,0.55)";
 
-      // compare highlight
-      if (isA || isB) fill = "rgba(255,255,255,0.90)";
+      // compare highlight (cyan)
+      if (isA || isB) fill = "rgba(144,202,249,0.95)";
 
-      // swap highlight
-      if ((isA || isB) && highlight.swapped) fill = "rgba(255,255,255,1)";
+      // swap highlight (stronger cyan)
+      if ((isA || isB) && highlight.swapped) fill = "rgba(144,202,249,1)";
+
 
       ctx.fillStyle = fill;
 
