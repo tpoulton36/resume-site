@@ -6,6 +6,7 @@
 (() => {
   // ---------- DOM ----------
   const btnRun = document.getElementById("btnRun");
+  const btnStop = document.getElementById("btnStop");
   const btnRestart = document.getElementById("btnRestart");
   const btnRandomize = document.getElementById("btnRandomize");
   const inputSize = document.getElementById("inputSize");
@@ -29,6 +30,9 @@
   const statLeftPasses = document.getElementById("statLeftPasses");
   const statRightPasses = document.getElementById("statRightPasses");
 
+  const statDatasetN = document.getElementById("statDatasetN");
+
+
 
   if (!btnRun || !canvasLeft || !canvasRight) {
     console.error("Missing DOM Algorithms page elements not found. Check template IDs:");
@@ -36,15 +40,18 @@
   }
 
   // ---------- State ----------
-  let dataset = [];
+  let baseData = [];
   let leftData = [];
   let rightData = [];
+
+  let isRunning = false;
+  let isPaused = false;
 
   //Used to cancel a run safely when Restart or Randomize is clicked
   let runToken = 0;
 
-  const leftMetrics = {comparisons: 0, swaps: 0, passes: 0, timeMS: 0};
-  const rightMetrics = {comparisons: 0, swaps: 0, passes: 0, timeMS: 0};
+  const leftMetrics = {comparisons: 0, swaps: 0, passes: 0, timeMs: 0};
+  const rightMetrics = {comparisons: 0, swaps: 0, passes: 0, timeMs: 0};
 
   // Track current highlighted indices for rendering
   let leftHighlight = { a: -1, b: -1, swapped: false };
@@ -66,12 +73,48 @@
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  function setControlsEnabled(enabled) {
-    btnRun.disabled = !enabled;
-    btnRestart.disabled = !enabled;
-    btnRandomize.disabled = !enabled;
-    inputSize.disabled = !enabled;
+  async function waitWhilePaused(tokenAtStart) {
+  while (isPaused) {
+    if (runToken !== tokenAtStart) return false;
+    await sleep(30);
   }
+  return true;
+}
+
+function setControlsEnabled(mode) {
+  // mode: "idle" | "running" | "paused"
+  if (mode === "idle") {
+    btnRun.disabled = false;
+    btnRun.textContent = "Run";
+    btnStop.disabled = true; // Pause disabled when idle
+    btnStop.textContent = "Pause";
+    btnRestart.disabled = false;
+    btnRandomize.disabled = false;
+    inputSize.disabled = false;
+    return;
+  }
+
+  if (mode === "running") {
+    btnRun.disabled = true;
+    btnRun.textContent = "Run";
+    btnStop.disabled = false; // Pause enabled
+    btnStop.textContent = "Pause";
+    btnRestart.disabled = true;
+    btnRandomize.disabled = true;
+    inputSize.disabled = true;
+    return;
+  }
+
+  // paused
+  btnRun.disabled = false;
+  btnRun.textContent = "Resume";
+  btnStop.disabled = true; // keep pause disabled while paused
+  btnStop.textContent = "Paused";
+  btnRestart.disabled = false; // allow reset while paused
+  btnRandomize.disabled = false; // allow randomize while paused
+  inputSize.disabled = false;
+}
+
 
   function formatRuntime(ms) {
   const n = Math.max(0, Number(ms) || 0);
@@ -112,7 +155,7 @@
 
     statFasterPct.textContent = "0";
     statWinner.textContent = "None";
-    statStatus.textContent = "Idle";
+    //statStatus.textContent = "Idle";
 
     syncMetricsToDOM();
   }
@@ -201,12 +244,25 @@
 
     for (let i = 0; i < n - 1; i++) {
       metrics.passes += 1;
+
+      if (isPaused) {
+        const ok = await waitWhilePaused(tokenAtStart);
+        if (!ok) return { cancelled: true };
+      }
+
+
       // cancel check
       if (runToken !== tokenAtStart) return { cancelled: true };
 
       let swappedThisPass = false;
 
       for (let j = 0; j < n - 1 - i; j++) {
+
+        if (isPaused) {
+        const ok = await waitWhilePaused(tokenAtStart);
+        if (!ok) return { cancelled: true };
+        }
+
         if (runToken !== tokenAtStart) return { cancelled: true };
 
         metrics.comparisons += 1;
@@ -282,7 +338,12 @@
   // ---------- Actions ----------
   function randomizeData() {
     runToken += 1; // cancel any active run
+    isRunning = false;
+    isPaused = false;
+    setControlsEnabled("idle");
+
     baseData = generateDataset(inputSize.value);
+    statDatasetN.textContent = String(baseData.length);
     leftData = baseData.slice();
     rightData = baseData.slice();
     resetMetrics();
@@ -290,76 +351,111 @@
   }
 
   async function runBoth() {
-    // prevent double starts
-    runToken += 1;
-    const tokenAtStart = runToken;
+  // prevent double starts
+  runToken += 1;
+  const tokenAtStart = runToken;
 
-    resetMetrics();
-    statStatus.textContent = "Running";
-    setControlsEnabled(false);
+  isRunning = true;
+  isPaused = false;
+  statStatus.textContent = "Running";
+  setControlsEnabled("running");
 
-    // ensure both start with same base data state
-    leftData = baseData.slice();
-    rightData = baseData.slice();
-    renderAll();
+  resetMetrics();
 
-    // run both concurrently
-    const pLeft = runBubbleSort(
-      leftData,
-      leftMetrics,
-      leftSetHighlight,
-      tokenAtStart,
-      false
-    );
+  // ensure both start with same base data state
+  leftData = baseData.slice();
+  rightData = baseData.slice();
+  renderAll();
 
-    const pRight = runBubbleSort(
-      rightData,
-      rightMetrics,
-      rightSetHighlight,
-      tokenAtStart,
-      true
-    );
+  // run both concurrently
+  const pLeft = runBubbleSort(
+    leftData,
+    leftMetrics,
+    leftSetHighlight,
+    tokenAtStart,
+    false
+  );
 
-    const [rLeft, rRight] = await Promise.all([pLeft, pRight]);
+  const pRight = runBubbleSort(
+    rightData,
+    rightMetrics,
+    rightSetHighlight,
+    tokenAtStart,
+    true
+  );
 
-    // if cancelled, do not stamp results
-    if (runToken !== tokenAtStart || rLeft.cancelled || rRight.cancelled) {
-      statStatus.textContent = "Idle";
-      setControlsEnabled(true);
-      return;
-    }
+  const [rLeft, rRight] = await Promise.all([pLeft, pRight]);
 
-    computeWinner();
-    statStatus.textContent = "Done";
-    setControlsEnabled(true);
+  // cancelled or stopped
+  if (runToken !== tokenAtStart || rLeft.cancelled || rRight.cancelled) {
+    isRunning = false;
+    isPaused = false;
+    statStatus.textContent = "Idle";
+    setControlsEnabled("idle");
+    return;
   }
+
+  computeWinner();
+  statStatus.textContent = "Done";
+
+  isRunning = false;
+  setControlsEnabled("idle");
+}
 
   // ---------- Event Wiring ----------
   btnRandomize.addEventListener("click", () => randomizeData());
 
-  btnRestart.addEventListener("click", () => {
-    randomizeData();
-  });
+btnRestart.addEventListener("click", () => {
+  // Cancel any active run and reset to the same dataset
+  runToken += 1;
+  isRunning = false;
+  isPaused = false;
 
-  btnRun.addEventListener("click", () => {
-    runBoth();
-  });
+  leftData = baseData.slice();
+  rightData = baseData.slice();
 
-  inputSize.addEventListener("input", () => {
-    // live resize regenerates dataset
-    randomizeData();
-  });
+  resetMetrics();
+  statStatus.textContent = "Idle";
+  setControlsEnabled("idle");
+  renderAll();
+});
+
+btnRun.addEventListener("click", () => {
+  if (isRunning && isPaused) {
+    isPaused = false;
+    statStatus.textContent = "Running";
+    setControlsEnabled("running");
+    return;
+  }
+
+  runBoth();
+});
+
+inputSize.addEventListener("input", () => {
+  randomizeData();
+});
 
   // Speed affects delay; no need to regenerate
   inputSpeed.addEventListener("input", () => {
     // nothing required here yet
   });
 
+btnStop.addEventListener("click", () => {
+  if (!isRunning) return;
+  isPaused = true;
+  statStatus.textContent = "Paused";
+  setControlsEnabled("paused");
+});
+
+
+
   // ---------- Init ----------
 
   // Force default slider positions on load and refresh
-inputSize.value = "25";   // 25% of range
-inputSpeed.value = "100"; // max speed
+  btnStop.disabled = true;
+  inputSize.value = "25";   // 25% of range
+  inputSpeed.value = "100"; // max speed
+  setControlsEnabled("idle");
 
   randomizeData();
 })();

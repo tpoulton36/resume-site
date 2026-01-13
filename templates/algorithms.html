@@ -16,7 +16,8 @@
 
   <section class="algo-controls" aria-label="Algorithm controls">
     <button id="btnRun" type="button">Run</button>
-    <button id="btnRestart" type="button">Restart</button>
+    <button id="btnStop" type="button">Pause</button>
+    <button id="btnRestart" type="button">Reset</button>
     <button id="btnRandomize" type="button">Randomize</button>
 
     <label>
@@ -29,6 +30,10 @@
       <input id="inputSpeed" type="range" min="1" max="100" value="100">
     </label>
   </section>
+
+  <div class="dataset-meta">
+  Dataset: <span id="statDatasetN">0</span>
+  </div>
 
   <section class="compare-row" data-compare-row="bubble-vs-opt-bubble">
     <article class="algo-panel" data-algo="bubble">
