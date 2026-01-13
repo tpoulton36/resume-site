@@ -8,19 +8,78 @@
 </head>
 <body>
 
-  <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+  <main class="algo-page">
+  <header class="algo-header">
+    <h1>Algorithm Visualizer</h1>
+    <p>Compare two algorithms on the same dataset.</p>
+  </header>
 
-  <h1>Algorithms Lab</h1>
-  <p>Visual learning space for searching and sorting algorithms.</p>
-  <hr>
+  <section class="algo-controls" aria-label="Algorithm controls">
+    <button id="btnRun" type="button">Run</button>
+    <button id="btnRestart" type="button">Restart</button>
+    <button id="btnRandomize" type="button">Randomize</button>
 
-  <h2>Bubble Sort (Basic)</h2>
-  <div id="bubble-basic-mount" class="viz-mount">Placeholder</div>
+    <label>
+      Size
+      <input id="inputSize" type="range" min="10" max="150" value="15">
+    </label>
 
-  <hr>
+    <label>
+      Speed
+      <input id="inputSpeed" type="range" min="1" max="100" value="100">
+    </label>
+  </section>
 
-  <h2>Bubble Sort (Optimized)</h2>
-  <div id="bubble-optimized-mount" class="viz-mount">Placeholder</div>
+  <section class="compare-row" data-compare-row="bubble-vs-opt-bubble">
+    <article class="algo-panel" data-algo="bubble">
+      <h2>Bubble Sort</h2>
+
+      <div class="viz-wrap">
+        <canvas id="canvasLeft" width="520" height="320"></canvas>
+      </div>
+
+      <div class="stats">
+        <div>Comparisons: <span id="statLeftComparisons">0</span></div>
+        <div>Swaps: <span id="statLeftSwaps">0</span></div>
+        <div>Passes: <span id="statLeftPasses">0</span></div>
+        <div>Time: <span id="statLeftTime">0 ms</span></div>
+      </div>
+    </article>
+
+    <aside class="compare-strip" aria-label="Comparison">
+      <div class="compare-box">
+        <div class="compare-label">Faster</div>
+        <div class="compare-value"><span id="statFasterPct">0</span>%</div>
+      </div>
+
+      <div class="compare-box">
+        <div class="compare-label">Winner</div>
+        <div class="compare-value" id="statWinner">None</div>
+      </div>
+
+      <div class="compare-box">
+        <div class="compare-label">Status</div>
+        <div class="compare-value" id="statStatus">Idle</div>
+      </div>
+    </aside>
+
+    <article class="algo-panel" data-algo="opt-bubble">
+      <h2>Optimized Bubble Sort</h2>
+
+      <div class="viz-wrap">
+        <canvas id="canvasRight" width="520" height="320"></canvas>
+      </div>
+
+      <div class="stats">
+        <div>Comparisons: <span id="statRightComparisons">0</span></div>
+        <div>Swaps: <span id="statRightSwaps">0</span></div>
+        <div>Passes: <span id="statRightPasses">0</span></div>
+        <div>Time: <span id="statRightTime">0 ms</span></div>
+      </div>
+    </article>
+  </section>
+</main>
+
 
   <script src="{{ url_for('static', filename='js/algorithms.js') }}"></script>
 </body>
