@@ -149,6 +149,42 @@ p {
 }
 
 
+/* Homepage project card */
+.project-card {
+  display: block;
+  max-width: 520px;
+  margin: 0 auto 32px auto;
+  padding: 20px 22px;
+
+  background: #1e1e1e;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  text-decoration: none;
+  color: inherit;
+
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+  transition: border-color 180ms ease,
+              box-shadow 180ms ease,
+              transform 180ms ease;
+}
+
+.project-card h3 {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.project-card p {
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.project-card:hover {
+  border-color: rgba(144, 202, 249, 0.45);
+  box-shadow: 0 0 22px rgba(144, 202, 249, 0.15);
+  transform: translateY(-2px);
+}
 
 
 
