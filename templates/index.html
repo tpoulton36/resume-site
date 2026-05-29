@@ -5,119 +5,140 @@
     <title>Tanner Poulton - Resume</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
+    <!-- Animated background canvas -->
     <div id="pi-background">
         <canvas id="pi-canvas"></canvas>
     </div>
-    <h1><span class="typewriter"></span></h1>
-    <p><a href="mailto:Tpoulton36@gmail.com" class="email">Tpoulton36@gmail.com</a></p>
-    <p>Senior Computer Science Student</p>
-    <p>Welcome to my resume-style website built with Flask.</p>
+
+    <!-- Header / introduction -->
+    <header class="site-header">
+        <h1><span class="typewriter"></span></h1>
+        <p><a href="mailto:Tpoulton36@gmail.com" class="email">Tpoulton36@gmail.com</a></p>
+        <p>Senior Computer Science Student</p>
+        <p>Welcome to my resume-style website built with Flask.</p>
+    </header>
+
     <hr>
 
-<hr>
-<h2>About Me</h2>
-<div class="about">
-        <p>
-        Hi, I’m Tanner Poulton, a senior Computer Science student with a strong interest in practical software development, web applications, algorithms, and secure coding. I have experience working with Python, Java, C++, HTML, CSS, JavaScript, Flask, SQLite, JUnit, Git, and GitHub, and I enjoy using those tools to build projects that are functional, organized, and easy to maintain.
-        </p>
+    <!-- About section -->
+    <section class="about-section">
+        <h2>About Me</h2>
 
-        <p>
-        My work includes a Flask-based resume website, an algorithm visualizer that compares sorting performance, Java applications supported by unit testing, and C++ programs that process, search, and sort data from CSV files. Through these projects, I have gained experience with frontend design, backend routing, object-oriented programming, data handling, debugging, testing, and version control. I also focus on writing code that is readable and structured so future improvements can be made without unnecessary rework.
-        </p>
+        <div class="about">
+            <p>
+                Hi, I’m Tanner Poulton, a senior Computer Science student with a strong interest in practical software development, web applications, algorithms, and secure coding. I have experience working with Python, Java, C++, HTML, CSS, JavaScript, Flask, SQLite, JUnit, Git, and GitHub, and I enjoy using those tools to build projects that are functional, organized, and easy to maintain.
+            </p>
 
-        <p>
-        I am especially interested in the connection between problem-solving and real-world application. Whether I am designing a user interface, improving program logic, reviewing code quality, or planning future enhancements, I try to approach development with clarity, precision, and purpose. This site highlights my growth as a developer and serves as a portfolio of the skills I am continuing to build as I move toward a career in software development.
-        </p>
-</div>
+            <p>
+                My work includes a Flask-based resume website, an algorithm visualizer that compares sorting performance, Java applications supported by unit testing, C++ programs that process, search, and sort data from CSV files, and an Unreal Engine 5 prototype that demonstrates interactive design and project documentation. Through these projects, I have gained experience with frontend design, backend routing, object-oriented programming, data handling, debugging, testing, version control, and iterative development.
+            </p>
 
-<!-- Projects-->
+            <p>
+                I am especially interested in the connection between problem-solving and real-world application. Whether I am designing a user interface, improving program logic, reviewing code quality, or planning future enhancements, I try to approach development with clarity, precision, and purpose. This site highlights my growth as a developer and serves as a portfolio of the skills I am continuing to build as I move toward a career in software development.
+            </p>
+        </div>
+    </section>
 
-<h2>Projects</h2>
+    <hr>
 
-<a href="{{ url_for('algorithms') }}" class="project-card">
-  <h3>Algorithm Visualizer</h3>
-  <p>
-    Interactive, side-by-side comparison of sorting algorithms on the same dataset.
-    Built to visualize performance and behavior differences.
-  </p>
-</a>
+    <!-- Skills section -->
+    <section class="skills-section">
+        <h2>Skills</h2>
 
+        <div class="skills">
+            <div class="skill-group">
+                <h3>Programming Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>C++</li>
+                    <li>JavaScript</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
 
-<div class="projects">
+            <div class="skill-group">
+                <h3>Web Development & Tools</h3>
+                <ul>
+                    <li>Flask</li>
+                    <li>HTML & CSS</li>
+                    <li>Git & GitHub</li>
+                    <li>Visual Studio Code</li>
+                    <li>Eclipse</li>
+                    <li>MongoDB</li>
+                    <li>Unreal Engine 5</li>
+                </ul>
+            </div>
 
-    <div class="project">
-        <h3>Resume Website (Flask)</h3>
-        <p>
-            A personal portfolio and resume website built using Flask, HTML, CSS,
-            and JavaScript. Features custom styling, responsive design, and an
-            interactive algorithm visualization section.
-        </p>
-        <a href="https://github.com/tpoulton36/resume-site" target="_blank">
-            View on GitHub
+            <div class="skill-group">
+                <h3>Software Engineering Concepts</h3>
+                <ul>
+                    <li>Object-Oriented Programming</li>
+                    <li>Software Testing & JUnit</li>
+                    <li>Secure Coding Practices</li>
+                    <li>SDLC & Agile Development</li>
+                    <li>Data Structures & Algorithms</li>
+                    <li>Database Design</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- Projects section -->
+    <section class="projects-section">
+        <h2>Projects</h2>
+
+        <a href="{{ url_for('algorithms') }}" class="project-card">
+            <h3>Algorithm Visualizer</h3>
+            <p>
+                Interactive, side-by-side comparison of sorting algorithms on the same dataset.
+                Built to visualize performance and behavior differences.
+            </p>
         </a>
-    </div>
 
-    <div class="project">
-        <h3>GAM-303 Platformer Prototype (Unreal Engine 5)</h3>
-        <p>
-            A 3D platformer prototype developed in Unreal Engine 5 featuring
-            puzzle mechanics, interactive objects, collectibles, and documented
-            development milestones throughout the project lifecycle.
-        </p>
-        <a href="https://github.com/tpoulton36/GAM-303" target="_blank">
-            View on GitHub
-        </a>
-    </div>
+        <div class="projects">
+            <div class="project">
+                <h3>Resume Website (Flask)</h3>
+                <p>
+                    A personal portfolio and resume website built using Flask, HTML, CSS,
+                    and JavaScript. Features custom styling, responsive design, and an
+                    interactive algorithm visualization section.
+                </p>
+                <a href="https://github.com/tpoulton36/resume-site" target="_blank">
+                    View on GitHub
+                </a>
+            </div>
 
-    <div class="project">
-        <h3>CS-465 Full Stack Application</h3>
-        <p>
-            An ongoing full stack web development project utilizing modern web
-            technologies, backend development concepts, and database integration
-            as part of the CS-465 curriculum.
-        </p>
-        <a href="https://github.com/tpoulton36/CS-465-fullstack" target="_blank">
-            View on GitHub
-        </a>
-    </div>
+            <div class="project">
+                <h3>GAM-303 Platformer Prototype (Unreal Engine 5)</h3>
+                <p>
+                    A 3D platformer prototype developed in Unreal Engine 5 featuring
+                    puzzle mechanics, interactive objects, collectibles, and documented
+                    development milestones throughout the project lifecycle.
+                </p>
+                <a href="https://github.com/tpoulton36/GAM-303" target="_blank">
+                    View on GitHub
+                </a>
+            </div>
 
-</div>
+            <div class="project">
+                <h3>CS-465 Full Stack Application</h3>
+                <p>
+                    An ongoing full stack web development project utilizing modern web
+                    technologies, backend development concepts, and database integration
+                    as part of the CS-465 curriculum.
+                </p>
+                <a href="https://github.com/tpoulton36/CS-465-fullstack" target="_blank">
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
 
-<hr>
-<h2>Skills</h2>
-<div class="skills">
-    <div class="skill-group">
-        <h3>Languages</h3>
-        <ul>
-            <li>Python</li>
-            <li>Java</li>
-            <li>C++</li>
-            <li>SQL</li>
-        </ul>
-    </div>
-    <div class="skill-group">
-        <h3>Frameworks & Tools</h3>
-        <ul>
-            <li>Flask</li>
-            <li>JUnit</li>
-            <li>Git & GitHub</li>
-            <li>Visual Studio Code</li>
-            <li>Eclipse</li>
-        </ul>
-    </div>
-    <div class="skill-group">
-        <h3>Concepts</h3>
-        <ul>
-            <li>Object-Oriented Programming</li>
-            <li>Software Testing</li>
-            <li>Secure Coding Practices</li>
-            <li>SDLC & Agile</li>
-        </ul>
-    </div>
-</div>
-
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
