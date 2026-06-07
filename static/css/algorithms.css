@@ -288,6 +288,10 @@ canvas {
   font-family: 'Exo 2', sans-serif;
   font-weight: 700;
   letter-spacing: 0.025em;
+  color: #90caf9;
+  text-shadow:
+    0 0 10px rgba(144, 202, 249, 0.25),
+    0 0 18px rgba(144, 202, 249, 0.10);
 }
 
 /* Stat labels and comparison labels */
@@ -341,4 +345,39 @@ canvas {
 .compare-value {
   color: #90caf9;
   text-shadow: 0 0 10px rgba(144, 202, 249, 0.18);
+}
+
+/* Algorithm dropdowns */
+.algo-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0.92;
+  color: #90caf9;
+  text-shadow: 0 0 10px rgba(144, 202, 249, 0.18);
+}
+
+.algo-panel select {
+  width: 100%;
+  background: #121212;
+  color: #f0f0f0;
+  border: 1px solid rgba(144, 202, 249, 0.35);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: 0 0 10px rgba(144, 202, 249, 0.08);
+  color: #90caf9;
+  font-weight: 600;
+}
+
+.algo-panel select:hover,
+.algo-panel select:focus {
+  border-color: rgba(144, 202, 249, 0.75);
+  box-shadow: 0 0 14px rgba(144, 202, 249, 0.18);
 }

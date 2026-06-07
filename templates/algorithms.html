@@ -53,8 +53,18 @@
   </div>
 
   <section class="compare-row" data-compare-row="bubble-vs-opt-bubble">
-    <article class="algo-panel" data-algo="bubble">
-      <h2>Bubble Sort</h2>
+    <article class="algo-panel" data-algo="left">
+  <h2>Algorithm A</h2>
+
+  <label>
+    Algorithm
+    <select id="leftAlgorithm">
+      <option value="bubble">Bubble Sort</option>
+      <option value="optimizedBubble">Optimized Bubble Sort</option>
+      <option value="selection">Selection Sort</option>
+      <option value="insertion">Insertion Sort</option>
+    </select>
+  </label>
 
       <div class="viz-wrap">
         <canvas id="canvasLeft" width="520" height="320"></canvas>
@@ -85,8 +95,18 @@
       </div>
     </aside>
 
-    <article class="algo-panel" data-algo="opt-bubble">
-      <h2>Optimized Bubble Sort</h2>
+    <article class="algo-panel" data-algo="right">
+  <h2>Algorithm B</h2>
+
+  <label>
+    Algorithm
+    <select id="rightAlgorithm">
+      <option value="optimizedBubble">Optimized Bubble Sort</option>
+      <option value="bubble">Bubble Sort</option>
+      <option value="selection">Selection Sort</option>
+      <option value="insertion">Insertion Sort</option>
+    </select>
+  </label>
 
       <div class="viz-wrap">
         <canvas id="canvasRight" width="520" height="320"></canvas>

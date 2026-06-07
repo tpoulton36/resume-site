@@ -11,6 +11,8 @@
   const btnRandomize = document.getElementById("btnRandomize");
   const inputSize = document.getElementById("inputSize");
   const inputSpeed = document.getElementById("inputSpeed");
+  const leftAlgorithm = document.getElementById("leftAlgorithm");
+  const rightAlgorithm = document.getElementById("rightAlgorithm");
 
   const canvasLeft = document.getElementById("canvasLeft");
   const canvasRight = document.getElementById("canvasRight");
@@ -236,68 +238,189 @@ function setControlsEnabled(mode) {
     syncMetricsToDOM();
   }
 
-  // ---------- Sorting Runners ----------
-  async function runBubbleSort(data, metrics, setHighlight, tokenAtStart, isOptimized) {
-    const n = data.length;
-    const start = performance.now();
+// ---------- Sorting Runners ----------
+async function runBubbleSort(data, metrics, setHighlight, tokenAtStart, isOptimized) {
+  const n = data.length;
+  const start = performance.now();
+  const delay = delayMsFromSpeed(inputSpeed.value);
 
-    const delay = delayMsFromSpeed(inputSpeed.value);
+  for (let i = 0; i < n - 1; i++) {
+    metrics.passes += 1;
 
-    for (let i = 0; i < n - 1; i++) {
-      metrics.passes += 1;
+    if (isPaused) {
+      const ok = await waitWhilePaused(tokenAtStart);
+      if (!ok) return { cancelled: true };
+    }
 
+    if (runToken !== tokenAtStart) return { cancelled: true };
+
+    let swappedThisPass = false;
+
+    for (let j = 0; j < n - 1 - i; j++) {
       if (isPaused) {
         const ok = await waitWhilePaused(tokenAtStart);
         if (!ok) return { cancelled: true };
       }
 
-
-      // cancel check
       if (runToken !== tokenAtStart) return { cancelled: true };
 
-      let swappedThisPass = false;
+      metrics.comparisons += 1;
+      setHighlight(j, j + 1, false);
+      renderAll();
 
-      for (let j = 0; j < n - 1 - i; j++) {
+      if (data[j] > data[j + 1]) {
+        const tmp = data[j];
+        data[j] = data[j + 1];
+        data[j + 1] = tmp;
 
-        if (isPaused) {
-        const ok = await waitWhilePaused(tokenAtStart);
-        if (!ok) return { cancelled: true };
-        }
+        metrics.swaps += 1;
+        swappedThisPass = true;
 
-        if (runToken !== tokenAtStart) return { cancelled: true };
-
-        metrics.comparisons += 1;
-        setHighlight(j, j + 1, false);
+        setHighlight(j, j + 1, true);
         renderAll();
-
-        if (data[j] > data[j + 1]) {
-          const tmp = data[j];
-          data[j] = data[j + 1];
-          data[j + 1] = tmp;
-
-          metrics.swaps += 1;
-          swappedThisPass = true;
-
-          setHighlight(j, j + 1, true);
-          renderAll();
-        }
-
-        if (delay > 0) await sleep(delay);
       }
 
-      if (isOptimized && !swappedThisPass) {
-        break;
-      }
+      if (delay > 0) await sleep(delay);
     }
 
-    const end = performance.now();
-    metrics.timeMs = Math.max(0, Math.round(end - start));
-
-    setHighlight(-1, -1, false);
-    renderAll();
-
-    return { cancelled: false };
+    if (isOptimized && !swappedThisPass) {
+      break;
+    }
   }
+
+  const end = performance.now();
+  metrics.timeMs = Math.max(0, Math.round(end - start));
+
+  setHighlight(-1, -1, false);
+  renderAll();
+
+  return { cancelled: false };
+}
+
+async function runSelectionSort(data, metrics, setHighlight, tokenAtStart) {
+  const n = data.length;
+  const start = performance.now();
+  const delay = delayMsFromSpeed(inputSpeed.value);
+
+  for (let i = 0; i < n - 1; i++) {
+    metrics.passes += 1;
+    let minIndex = i;
+
+    for (let j = i + 1; j < n; j++) {
+      if (isPaused) {
+        const ok = await waitWhilePaused(tokenAtStart);
+        if (!ok) return { cancelled: true };
+      }
+
+      if (runToken !== tokenAtStart) return { cancelled: true };
+
+      metrics.comparisons += 1;
+      setHighlight(minIndex, j, false);
+      renderAll();
+
+      if (data[j] < data[minIndex]) {
+        minIndex = j;
+        setHighlight(minIndex, j, false);
+        renderAll();
+      }
+
+      if (delay > 0) await sleep(delay);
+    }
+
+    if (minIndex !== i) {
+      const tmp = data[i];
+      data[i] = data[minIndex];
+      data[minIndex] = tmp;
+
+      metrics.swaps += 1;
+      setHighlight(i, minIndex, true);
+      renderAll();
+
+      if (delay > 0) await sleep(delay);
+    }
+  }
+
+  const end = performance.now();
+  metrics.timeMs = Math.max(0, Math.round(end - start));
+
+  setHighlight(-1, -1, false);
+  renderAll();
+
+  return { cancelled: false };
+}
+
+async function runInsertionSort(data, metrics, setHighlight, tokenAtStart) {
+  const n = data.length;
+  const start = performance.now();
+  const delay = delayMsFromSpeed(inputSpeed.value);
+
+  for (let i = 1; i < n; i++) {
+    metrics.passes += 1;
+    let j = i;
+
+    while (j > 0) {
+      if (isPaused) {
+        const ok = await waitWhilePaused(tokenAtStart);
+        if (!ok) return { cancelled: true };
+      }
+
+      if (runToken !== tokenAtStart) return { cancelled: true };
+
+      metrics.comparisons += 1;
+      setHighlight(j - 1, j, false);
+      renderAll();
+
+      if (data[j - 1] <= data[j]) {
+        break;
+      }
+
+      const tmp = data[j];
+      data[j] = data[j - 1];
+      data[j - 1] = tmp;
+
+      metrics.swaps += 1;
+      setHighlight(j - 1, j, true);
+      renderAll();
+
+      j -= 1;
+
+      if (delay > 0) await sleep(delay);
+    }
+  }
+
+  const end = performance.now();
+  metrics.timeMs = Math.max(0, Math.round(end - start));
+
+  setHighlight(-1, -1, false);
+  renderAll();
+
+  return { cancelled: false };
+}
+
+async function runSelectedAlgorithm(
+  algorithm,
+  data,
+  metrics,
+  setHighlight,
+  tokenAtStart
+) {
+  switch (algorithm) {
+    case "bubble":
+      return runBubbleSort(data, metrics, setHighlight, tokenAtStart, false);
+
+    case "optimizedBubble":
+      return runBubbleSort(data, metrics, setHighlight, tokenAtStart, true);
+
+    case "selection":
+      return runSelectionSort(data, metrics, setHighlight, tokenAtStart);
+
+    case "insertion":
+      return runInsertionSort(data, metrics, setHighlight, tokenAtStart);
+
+    default:
+      return runBubbleSort(data, metrics, setHighlight, tokenAtStart, false);
+  }
+}
 
   function leftSetHighlight(a, b, swapped) {
     leftHighlight = { a, b, swapped };
@@ -328,7 +451,9 @@ function setControlsEnabled(mode) {
       const faster = fasterIsLeft ? leftT : rightT;
       const slower = fasterIsLeft ? rightT : leftT;
 
-      winner = fasterIsLeft ? "Left" : "Right";
+      winner = fasterIsLeft
+        ? leftAlgorithm.options[leftAlgorithm.selectedIndex].text
+        : rightAlgorithm.options[rightAlgorithm.selectedIndex].text;
       fasterPct = Math.round(((slower - faster) / slower) * 100);
     }
 
@@ -368,22 +493,22 @@ function setControlsEnabled(mode) {
   rightData = baseData.slice();
   renderAll();
 
-  // run both concurrently
-  const pLeft = runBubbleSort(
-    leftData,
-    leftMetrics,
-    leftSetHighlight,
-    tokenAtStart,
-    false
-  );
+// run both concurrently using the selected algorithms
+const pLeft = runSelectedAlgorithm(
+  leftAlgorithm.value,
+  leftData,
+  leftMetrics,
+  leftSetHighlight,
+  tokenAtStart
+);
 
-  const pRight = runBubbleSort(
-    rightData,
-    rightMetrics,
-    rightSetHighlight,
-    tokenAtStart,
-    true
-  );
+const pRight = runSelectedAlgorithm(
+  rightAlgorithm.value,
+  rightData,
+  rightMetrics,
+  rightSetHighlight,
+  tokenAtStart
+);
 
   const [rLeft, rRight] = await Promise.all([pLeft, pRight]);
 
