@@ -98,45 +98,20 @@
 
     <!-- Projects section -->
     <section id="projects" class="projects-section">
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <h3>Resume Website (Flask)</h3>
-                <p>
-                    A personal portfolio and resume website built using Flask, HTML, CSS,
-                    and JavaScript. Features custom styling, responsive design, and an
-                    interactive algorithm visualization section.
-                </p>
-                <a href="https://github.com/tpoulton36/resume-site" target="_blank">
-                    View on GitHub
-                </a>
-            </div>
-
-            <div class="project">
-                <h3>GAM-303 Platformer Prototype (Unreal Engine 5)</h3>
-                <p>
-                    A 3D platformer prototype developed in Unreal Engine 5 featuring
-                    puzzle mechanics, interactive objects, collectibles, and documented
-                    development milestones throughout the project lifecycle.
-                </p>
-                <a href="https://github.com/tpoulton36/GAM-303" target="_blank">
-                    View on GitHub
-                </a>
-            </div>
-
-            <div class="project">
-                <h3>CS-465 Full Stack Application</h3>
-                <p>
-                    An ongoing full stack web development project utilizing modern web
-                    technologies, backend development concepts, and database integration
-                    as part of the CS-465 curriculum.
-                </p>
-                <a href="https://github.com/tpoulton36/CS-465-fullstack" target="_blank">
-                    View on GitHub
-                </a>
-            </div>
+    <h2>Projects</h2>
+    <div class="projects">
+        {% for project in projects %}
+        <div class="project">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            <p><strong>Technologies:</strong> {{ project.technologies }}</p>
+            <a href="{{ project.github_url }}" target="_blank">
+                View on GitHub
+            </a>
         </div>
-    </section>
+        {% endfor %}
+    </div>
+</section>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>

@@ -59,11 +59,10 @@
   <label>
     Algorithm
     <select id="leftAlgorithm">
-      <option value="bubble">Bubble Sort</option>
-      <option value="optimizedBubble">Optimized Bubble Sort</option>
-      <option value="selection">Selection Sort</option>
-      <option value="insertion">Insertion Sort</option>
-    </select>
+  {% for algorithm in algorithms %}
+    <option value="{{ algorithm.key }}">{{ algorithm.name }}</option>
+  {% endfor %}
+</select>
   </label>
 
       <div class="viz-wrap">
@@ -101,11 +100,12 @@
   <label>
     Algorithm
     <select id="rightAlgorithm">
-      <option value="optimizedBubble">Optimized Bubble Sort</option>
-      <option value="bubble">Bubble Sort</option>
-      <option value="selection">Selection Sort</option>
-      <option value="insertion">Insertion Sort</option>
-    </select>
+  {% for algorithm in algorithms %}
+    <option value="{{ algorithm.key }}" {% if algorithm.key == "optimizedBubble" %}selected{% endif %}>
+      {{ algorithm.name }}
+    </option>
+  {% endfor %}
+</select>
   </label>
 
       <div class="viz-wrap">
