@@ -14,7 +14,7 @@
     <header class="site-header">
         <h1>E-Portfolio</h1>
         <p>CS-499 Computer Science Capstone</p>
-        <p>A collection of enhanced artifacts, narratives, and reflection materials.</p>
+        <p>Professional portfolio, enhanced artifact, code review, and reflection materials.</p>
     </header>
 
     <nav class="main-nav">
@@ -28,70 +28,153 @@
     <hr>
 
     <main class="eportfolio-page">
+
         <section class="about-section">
             <h2>Professional Self-Assessment</h2>
-            <p>
-                This section will include my professional self-assessment, which introduces my growth
-                throughout the Computer Science program and explains how my enhanced artifacts
-                demonstrate software engineering, algorithms, databases, communication, collaboration,
-                and security-focused development.
-            </p>
-            <a href="#" target="_blank">Self-Assessment Link Placeholder</a>
+            <div class="about">
+                <p>
+                    Throughout the Computer Science program, I have developed a stronger understanding of what it means to build software that is useful, organized, maintainable, and secure. My coursework has exposed me to software engineering, databases, algorithms, cybersecurity, full-stack development, testing, and project planning. As I have moved through the program, my career goals have become more focused on practical software development, especially web applications, backend development, and tools that solve real problems for users.
+                </p>
+
+                <p>
+                    Developing this ePortfolio helped me connect the skills I learned across multiple courses into one complete project. The main artifact in this portfolio is my Flask-based resume website. I enhanced this artifact in three major areas: software design and engineering, algorithms and data structures, and databases. These enhancements show my ability to improve an existing application, add meaningful functionality, evaluate design decisions, and organize code in a way that supports future growth.
+                </p>
+
+                <p>
+                    The software engineering enhancement improved the structure and usability of the site through navigation updates, project revisions, and better organization. The algorithms enhancement added an interactive sorting algorithm visualizer that compares algorithms on the same dataset and displays performance metrics. The database enhancement integrated SQLite so project and algorithm information could be stored in a database and rendered dynamically through Flask routes and templates.
+                </p>
+
+                <p>
+                    This portfolio also reflects growth in communication and collaboration. Using GitHub branches helped separate each enhancement and made the development process easier to track. Writing narratives and preparing a code review required me to explain technical decisions clearly for an audience that may include instructors, peers, or future employers. These experiences helped me understand that software development is not only about writing code, but also about explaining decisions, documenting progress, and creating work that others can understand.
+                </p>
+
+                <p>
+                    Security has also become an important part of how I think about software. Through coursework and this project, I have learned to consider data handling, validation, maintainability, and potential design flaws earlier in the development process. While this portfolio is not a large production system, the process of improving it helped me practice a security-focused mindset and think more carefully about how software should be structured and protected.
+                </p>
+
+                <p>
+                    Overall, this ePortfolio demonstrates my growth as a computer science student and my preparation to continue developing as a software professional. It brings together practical programming, web development, algorithmic thinking, database integration, communication, and secure design principles into one cohesive project.
+                </p>
+            </div>
         </section>
 
         <hr>
 
         <section class="projects-section">
             <h2>Code Review</h2>
-            <p>
-                This section will include my informal code review video. The code review explains the
-                original artifact, analyzes areas for improvement, and discusses the planned enhancements
-                for software design and engineering, algorithms and data structures, and databases.
-            </p>
-            <a href="#" target="_blank">Code Review Video Link Placeholder</a>
+            <div class="about">
+                <p>
+                    The code review video will provide a walkthrough of the original artifact, identify areas for improvement, and explain the planned enhancements for software engineering, algorithms and data structures, and databases.
+                </p>
+
+                <p>
+                    <a href="#" target="_blank">Code Review Video Link Placeholder</a>
+                </p>
+            </div>
         </section>
 
         <hr>
 
         <section class="projects-section">
             <h2>Enhancement One: Software Design and Engineering</h2>
-            <p>
-                This enhancement improved the structure, usability, and presentation of the Flask resume
-                website. Updates included navigation improvements, project section revisions, skills
-                updates, and overall usability improvements.
-            </p>
-            <a href="https://github.com/tpoulton36/resume-site/tree/cs499-software-engineering" target="_blank">
-                View Software Engineering Branch
-            </a>
+            <div class="about">
+                <p>
+                    This enhancement improved the structure, usability, and professional presentation of the Flask resume website. I added clearer navigation, improved project organization, updated portfolio content, and made the site easier to use as a professional portfolio.
+                </p>
+
+                <p>
+                    <a href="https://github.com/tpoulton36/resume-site/tree/cs499-software-engineering" target="_blank">
+                        View Software Engineering Branch
+                    </a>
+                </p>
+            </div>
+
+            <div class="projects">
+                <div class="project">
+                    <h3>Before Enhancement</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E1_Before.png') }}" alt="Software engineering before enhancement screenshot" width="100%">
+                </div>
+
+                <div class="project">
+                    <h3>After Enhancement</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E1_After1.png') }}" alt="Software engineering after homepage screenshot" width="100%">
+                </div>
+
+                <div class="project">
+                    <h3>After Enhancement: Projects Section</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E1_After2.png') }}" alt="Software engineering after projects section screenshot" width="100%">
+                </div>
+            </div>
         </section>
 
         <hr>
 
         <section class="projects-section">
             <h2>Enhancement Two: Algorithms and Data Structures</h2>
-            <p>
-                This enhancement added an interactive algorithm visualizer that allows users to compare
-                sorting algorithms on the same dataset. The feature demonstrates algorithmic thinking,
-                performance comparison, and trade-off analysis.
-            </p>
-            <a href="https://github.com/tpoulton36/resume-site/tree/cs499-algorithms-enhancement-v2" target="_blank">
-                View Algorithms Branch
-            </a>
+            <div class="about">
+                <p>
+                    This enhancement added an interactive algorithm visualizer to the portfolio site. The visualizer allows users to compare sorting algorithms using the same dataset and view performance metrics such as comparisons, swaps, runtime, and winner results.
+                </p>
+
+                <p>
+                    <a href="https://github.com/tpoulton36/resume-site/tree/cs499-algorithms-enhancement-v2" target="_blank">
+                        View Algorithms Branch
+                    </a>
+                </p>
+            </div>
+
+            <div class="projects">
+                <div class="project">
+                    <h3>Before Enhancement</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E2_Before.png') }}" alt="Algorithms before enhancement screenshot" width="100%">
+                </div>
+
+                <div class="project">
+                    <h3>After Enhancement: Visualizer</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E2_After1.png') }}" alt="Algorithm visualizer after enhancement screenshot" width="100%">
+                </div>
+
+                <div class="project">
+                    <h3>After Enhancement: Comparison Results</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E2_After2.png') }}" alt="Algorithm visualizer completed comparison screenshot" width="100%">
+                </div>
+            </div>
         </section>
 
         <hr>
 
         <section class="projects-section">
             <h2>Enhancement Three: Databases</h2>
-            <p>
-                This enhancement integrated a SQLite database into the Flask website. Project information
-                and algorithm metadata are now stored in a database and dynamically rendered through
-                Flask routes and Jinja templates.
-            </p>
-            <a href="https://github.com/tpoulton36/resume-site/tree/cs499-database-enhancement" target="_blank">
-                View Database Branch
-            </a>
+            <div class="about">
+                <p>
+                    This enhancement integrated a SQLite database into the Flask website. Project information and algorithm metadata were moved from hardcoded HTML into database records. Flask now retrieves this data through a database access layer and renders it dynamically in the website templates.
+                </p>
+
+                <p>
+                    <a href="https://github.com/tpoulton36/resume-site/tree/cs499-database-enhancement" target="_blank">
+                        View Database Branch
+                    </a>
+                </p>
+            </div>
+
+            <div class="projects">
+                <div class="project">
+                    <h3>Before Enhancement: Hardcoded Content</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E3_Before.png') }}" alt="Database before enhancement hardcoded content screenshot" width="100%">
+                </div>
+
+                <div class="project">
+                    <h3>After Enhancement: Database Files</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E3_After1.png') }}" alt="Database after enhancement file structure screenshot" width="100%">
+                </div>
+
+                <div class="project">
+                    <h3>After Enhancement: Dynamic Projects</h3>
+                    <img src="{{ url_for('static', filename='images/eportfolio/E3_After2.png') }}" alt="Database after enhancement dynamic projects screenshot" width="100%">
+                </div>
+            </div>
         </section>
+
     </main>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
