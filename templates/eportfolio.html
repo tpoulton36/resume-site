@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Portfolio - Tanner Poulton</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div id="pi-background">
+        <canvas id="pi-canvas"></canvas>
+    </div>
+
+    <header class="site-header">
+        <h1>E-Portfolio</h1>
+        <p>CS-499 Computer Science Capstone</p>
+        <p>A collection of enhanced artifacts, narratives, and reflection materials.</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('home') }}#skills">Skills</a>
+        <a href="{{ url_for('home') }}#projects">Projects</a>
+        <a href="{{ url_for('algorithms') }}">Algorithms Lab</a>
+        <a href="{{ url_for('eportfolio') }}">E-Portfolio</a>
+    </nav>
+
+    <hr>
+
+    <main class="eportfolio-page">
+        <section class="about-section">
+            <h2>Professional Self-Assessment</h2>
+            <p>
+                This section will include my professional self-assessment, which introduces my growth
+                throughout the Computer Science program and explains how my enhanced artifacts
+                demonstrate software engineering, algorithms, databases, communication, collaboration,
+                and security-focused development.
+            </p>
+            <a href="#" target="_blank">Self-Assessment Link Placeholder</a>
+        </section>
+
+        <hr>
+
+        <section class="projects-section">
+            <h2>Code Review</h2>
+            <p>
+                This section will include my informal code review video. The code review explains the
+                original artifact, analyzes areas for improvement, and discusses the planned enhancements
+                for software design and engineering, algorithms and data structures, and databases.
+            </p>
+            <a href="#" target="_blank">Code Review Video Link Placeholder</a>
+        </section>
+
+        <hr>
+
+        <section class="projects-section">
+            <h2>Enhancement One: Software Design and Engineering</h2>
+            <p>
+                This enhancement improved the structure, usability, and presentation of the Flask resume
+                website. Updates included navigation improvements, project section revisions, skills
+                updates, and overall usability improvements.
+            </p>
+            <a href="https://github.com/tpoulton36/resume-site/tree/cs499-software-engineering" target="_blank">
+                View Software Engineering Branch
+            </a>
+        </section>
+
+        <hr>
+
+        <section class="projects-section">
+            <h2>Enhancement Two: Algorithms and Data Structures</h2>
+            <p>
+                This enhancement added an interactive algorithm visualizer that allows users to compare
+                sorting algorithms on the same dataset. The feature demonstrates algorithmic thinking,
+                performance comparison, and trade-off analysis.
+            </p>
+            <a href="https://github.com/tpoulton36/resume-site/tree/cs499-algorithms-enhancement-v2" target="_blank">
+                View Algorithms Branch
+            </a>
+        </section>
+
+        <hr>
+
+        <section class="projects-section">
+            <h2>Enhancement Three: Databases</h2>
+            <p>
+                This enhancement integrated a SQLite database into the Flask website. Project information
+                and algorithm metadata are now stored in a database and dynamically rendered through
+                Flask routes and Jinja templates.
+            </p>
+            <a href="https://github.com/tpoulton36/resume-site/tree/cs499-database-enhancement" target="_blank">
+                View Database Branch
+            </a>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -15,6 +15,9 @@ def algorithms():
     algorithm_list = get_algorithms()
     return render_template("algorithms.html", algorithms=algorithm_list)
 
+@app.route("/eportfolio")
+def eportfolio():
+    return render_template("eportfolio.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
